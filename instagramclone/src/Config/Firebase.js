@@ -10,9 +10,11 @@ const firebaseApp = firebase.initializeApp({
     appId: "1:476179128299:web:237aa90b80886fdb5543ae",
     measurementId: "G-2FZN3DF7GP"
   });
-
+// to access the database
 const db = firebaseApp.firestore();
+//to get access to auth
 const auth = firebase.auth();
+//to get access to storage
 const storage = firebase.storage();
 
 export { db, auth, storage };

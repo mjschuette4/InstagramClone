@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from "./components/Post.js";
+import { db } from "./Config/Firebase"
 
 function App() {
-  const [posts,setPosts] = useState([
-    {
-      username: "Matthew",
-      caption: "Wow im incredible",
-      imageUrl: "https://images.unsplash.com/photo-1601306418939-19ee7ccffdf7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
-    },
-    {
-      username: "Sarah",
-      caption: "Wow im incredible",
-      imageUrl: "https://images.unsplash.com/photo-1601306418939-19ee7ccffdf7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
-    }
-  ]);  
+  const [posts,setPosts] = useState([]);  
+
+  // UseEffect -> runs a piece of code based on a specific condition
+
+  useEffect(() => {
+    //this line is saying everytime data in 'posts' changes then fire this code
+    db.collection('posts').onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map(doc => doc.data()));
+    });
+  }, [])
+
   return (
     <div className="App">
       <div className="app_header">
