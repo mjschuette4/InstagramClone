@@ -1,3 +1,16 @@
 * {
   margin: 0
 }
+
+.app {
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+.app_header {
+  background-color: white;
+  border-bottom: lightgray;
+  padding: 20px;
+  /* maintains aspect ratio of logo */
+  object-fit: contain;
+}
