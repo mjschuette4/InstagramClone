@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from "./components/Post.js";
 import { db } from "./Config/Firebase"
+import Modal from "@material-ui/core/Modal"
 
 function App() {
   const [posts,setPosts] = useState([]);  
@@ -11,12 +12,21 @@ function App() {
   useEffect(() => {
     //this line is saying everytime data in 'posts' changes then fire this code
     db.collection('posts').onSnapshot(snapshot => {
-      setPosts(snapshot.docs.map(doc => doc.data()));
+      setPosts(snapshot.docs.map(doc => ({
+        id: doc.id, 
+        post: doc.data()
+      })));
     });
   }, [])
 
   return (
     <div className="App">
+      <Modal
+        open={open}
+        onClose={handleClose}
+      >
+        {body}
+      </Modal>
       <div className="app_header">
         <img
           className="app_headerImage"
@@ -25,8 +35,8 @@ function App() {
         />
         </div>
         {
-          posts.map(post => (
-            <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+          posts.map(({id, post}) => (
+            <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
           ))
         }
     </div>
