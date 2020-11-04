@@ -48,7 +48,7 @@ function App() {
         setUser(authUser);
       } else {
       // user has logged out
-      setUsername(null);
+      setUser(null);
       }
     })
 
@@ -56,8 +56,7 @@ function App() {
       //perform some cleanup actions
       unsubscribe();
     }
-  }  
-  , [user, username])
+  }, [user, username])
 
   // UseEffect -> runs a piece of code based on a specific condition
 
@@ -96,7 +95,12 @@ function App() {
 
   return (
     <div className="App">
-      <ImageUpload />
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName}/>
+      ): (
+        <h3>You must login first to post</h3>
+      )}
 
       <Modal
         open={open}
