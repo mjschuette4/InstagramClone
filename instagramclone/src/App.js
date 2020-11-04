@@ -81,6 +81,7 @@ function App() {
       })
     })
     .catch((error) => alert(error.message));
+    setOpen(false);
   }
 
   const signIn = (event) => {
@@ -155,7 +156,7 @@ function App() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signUp}>Sign In</Button>          
+            <Button type="submit" onClick={signIn}>Sign In</Button>          
           </form>
         </div>
       </Modal>
