@@ -62,7 +62,7 @@ function App() {
 
   useEffect(() => {
     //this line is saying everytime data in 'posts' changes then fire this code
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id, 
         post: doc.data()
@@ -95,13 +95,6 @@ function App() {
 
   return (
     <div className="App">
-
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName}/>
-      ): (
-        <h3>You must login first to post</h3>
-      )}
-
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -184,15 +177,18 @@ function App() {
           <Button onClick={() => setOpen(true)}>Sign up</Button>
         </div>
       )}  
-        
-        
-        
-        
-        {
-          posts.map(({id, post}) => (
-            <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
-          ))
-        }
+     
+      {
+        posts.map(({id, post}) => (
+          <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+        ))
+      }
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName}/>
+      ): (
+        <h3>You must login first to post</h3>
+      )}
     </div>
   );
 }
