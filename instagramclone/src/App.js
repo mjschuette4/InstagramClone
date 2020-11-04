@@ -5,6 +5,7 @@ import { db, auth } from "./Config/Firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from '@material-ui/core';
+import ImageUpload from './ImageUpload';
 
 function getModalStyle() {
   const top = 50;
@@ -95,6 +96,8 @@ function App() {
 
   return (
     <div className="App">
+      <ImageUpload />
+
       <Modal
         open={open}
         onClose={() => setOpen(false)}
