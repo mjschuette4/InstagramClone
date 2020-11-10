@@ -9,8 +9,14 @@
 .app_header {
   background-color: white;
   border-bottom: lightgray;
+  display: flex;
+  justify-content: space-between;
   padding: 20px;
   /* maintains aspect ratio of logo */
+  object-fit: contain;
+}
+
+.app_headerImage {
   object-fit: contain;
 }
 

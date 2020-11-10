@@ -167,17 +167,16 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" 
           alt=""
         />
-      </div>
-
-      {user ? (
+        {user ? (
         <Button onClick={() => auth.signOut()}>Logout</Button>
-      ): (
+          ): (
         <div className="app_loginContainer">
           <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
           <Button onClick={() => setOpen(true)}>Sign up</Button>
         </div>
-      )}  
-     
+          )}  
+      </div>
+
       {
         posts.map(({id, post}) => (
           <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
