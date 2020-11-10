@@ -5,6 +5,7 @@ import { db } from '../Config/Firebase';
 
 function post({postId, username, caption, imageUrl}) {
     const [comments, setComments] = useState([]);
+    const [comment, setComment] = useState([]);
 
     useEffect(() => {
         let unsubscribe;
@@ -22,6 +23,11 @@ function post({postId, username, caption, imageUrl}) {
             unsubscribe();
         };
     }, [postId]);
+
+    const postComment = (event) => {
+
+    }
+
     return (
         <div className="post">
             <div className="post_header">
@@ -32,9 +38,25 @@ function post({postId, username, caption, imageUrl}) {
                     />
                 <h3>{username}</h3>
             </div>
-            
             <img className="post_image" src={imageUrl}/>
             <h4 className="post_text"><strong>{username}</strong> {caption}</h4>
+            <form className="post_commentBox">
+                <input 
+                    className="post_input"
+                    type="text"
+                    placeholder="Add a comment..."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                />
+                <button 
+                    className="post_button"
+                    disabled={!comment}
+                    type="submit"
+                    onClick={postComment}
+                >
+                    Post
+                </button>
+            </form>
         </div>
     )
 }
