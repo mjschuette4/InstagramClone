@@ -15,9 +15,13 @@ function post({postId, username, caption, imageUrl}) {
                 .collection("comments")
                 .onSnapshot((snapshot) => {
                     setComments(snapshot.docs.map((doc) => doc.data()));
-                })
+                });
         }
-    })
+
+        return () => {
+            unsubscribe();
+        };
+    }, [postId]);
     return (
         <div className="post">
             <div className="post_header">
