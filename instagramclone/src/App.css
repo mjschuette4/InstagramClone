@@ -20,6 +20,9 @@
   object-fit: contain;
 }
 
+.app_posts {
+  padding: 20px;
+}
 .app_signup {
   display: flex;
   flex-direction: column;
